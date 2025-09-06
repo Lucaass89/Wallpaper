@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wallpaper App</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div id="mainWallpaper"></div>
+  <button id="menuBtn" class="menu-btn">☰</button>
+  <aside id="sidebar" class="sidebar">
+    <button id="closeBtn" class="close-btn">✖</button>
+    <h2>Gestión de Wallpapers</h2>
+
+    <form id="wallpaperForm">
+      <input type="text" id="urlInput" placeholder="URL del wallpaper">
+      <button type="submit">Agregar URL</button>
+    </form>
+
+    <div class="upload-section">
+      <p>Subir imágenes:</p>
+      <input type="file" id="fileInput" accept="image/*" multiple>
+    </div>
+
+    <div class="drop-zone" id="dropZone">
+      <p>Arrastra imágenes aquí 📂</p>
+    </div>
+
+    <button id="randomBtn">Random Wallpaper 🎲</button>
+    <h3>Galería</h3>
+    <section class="wallpaper-container" id="wallpaperContainer"></section>
+  </aside>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
