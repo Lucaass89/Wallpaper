@@ -14,7 +14,7 @@
     <div class="container">
         <div class="header floating">
             <h1>🎨 Wallpaper Engine Web</h1>
-            <p>Gestiona y personaliza tus wallpapers</p>
+            <p>Gestiona y personaliza tus wallpapers con estilo moderno</p>
         </div>
 
         <div class="glass-card upload-section">
@@ -52,6 +52,112 @@
         </div>
 
         <div class="gallery" id="gallery"></div>
+    </div>
+    <div class="editor-modal" id="editorModal">
+        <div class="editor-content">
+            <div class="editor-header">
+                <h2>🎨 Editor de Imagen</h2>
+                <button class="btn btn-danger close-editor" onclick="closeImageEditor()">✖️</button>
+            </div>
+            
+            <div class="editor-body">
+                <div class="editor-canvas-container">
+                    <canvas id="editorCanvas"></canvas>
+                </div>
+                
+                <div class="editor-controls">
+                    <div class="control-group">
+                        <h4>🎭 Filtros Básicos</h4>
+                        <div class="filter-buttons">
+                            <button class="btn btn-small" onclick="applyFilter('none')">Original</button>
+                            <button class="btn btn-small" onclick="applyFilter('grayscale')">B&N</button>
+                            <button class="btn btn-small" onclick="applyFilter('sepia')">Sepia</button>
+                            <button class="btn btn-small" onclick="applyFilter('vintage')">Vintage</button>
+                            <button class="btn btn-small" onclick="applyFilter('cool')">Frío</button>
+                            <button class="btn btn-small" onclick="applyFilter('warm')">Cálido</button>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <h4>✨ Filtros Avanzados</h4>
+                        <div class="filter-buttons">
+                            <button class="btn btn-small" onclick="applyFilter('blur')">Blur</button>
+                            <button class="btn btn-small" onclick="applyFilter('vignette')">Viñeta</button>
+                            <button class="btn btn-small" onclick="applyFilter('sharpen')">Enfocar</button>
+                            <button class="btn btn-small" onclick="applyFilter('emboss')">Relieve</button>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <h4>🎨 Filtros de Color</h4>
+                        <div class="filter-buttons">
+                            <button class="btn btn-small" onclick="applyFilter('red')">Rojo</button>
+                            <button class="btn btn-small" onclick="applyFilter('green')">Verde</button>
+                            <button class="btn btn-small" onclick="applyFilter('blue')">Azul</button>
+                            <button class="btn btn-small" onclick="applyFilter('purple')">Púrpura</button>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <h4>⚙️ Ajustes</h4>
+                        <div class="slider-controls">
+                            <div class="slider-group">
+                                <label>Brillo</label>
+                                <input type="range" id="brightness" min="-100" max="100" value="0" oninput="updateImageAdjustments()">
+                                <span id="brightnessValue">0</span>
+                            </div>
+                            <div class="slider-group">
+                                <label>Contraste</label>
+                                <input type="range" id="contrast" min="-100" max="100" value="0" oninput="updateImageAdjustments()">
+                                <span id="contrastValue">0</span>
+                            </div>
+                            <div class="slider-group">
+                                <label>Saturación</label>
+                                <input type="range" id="saturation" min="-100" max="100" value="0" oninput="updateImageAdjustments()">
+                                <span id="saturationValue">0</span>
+                            </div>
+                            <div class="slider-group">
+                                <label>Matiz</label>
+                                <input type="range" id="hue" min="-180" max="180" value="0" oninput="updateImageAdjustments()">
+                                <span id="hueValue">0</span>
+                            </div>
+                            <div class="slider-group">
+                                <label>Gamma</label>
+                                <input type="range" id="gamma" min="0.1" max="3" step="0.1" value="1" oninput="updateImageAdjustments()">
+                                <span id="gammaValue">1.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <h4>🔄 Transformaciones</h4>
+                        <div class="transform-buttons">
+                            <button class="btn btn-small" onclick="rotateImage(90)">⤴️ 90°</button>
+                            <button class="btn btn-small" onclick="rotateImage(-90)">⤵️ -90°</button>
+                            <button class="btn btn-small" onclick="flipImage('horizontal')">↔️ H</button>
+                            <button class="btn btn-small" onclick="flipImage('vertical')">↕️ V</button>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <h4>✂️ Herramientas</h4>
+                        <div class="transform-buttons">
+                            <button class="btn btn-small" onclick="startCrop()">📐 Recortar</button>
+                            <button class="btn btn-small" onclick="addText()">📝 Texto</button>
+                            <button class="btn btn-small" onclick="addBorder()">🖼️ Borde</button>
+                            <button class="btn btn-small" onclick="resizeImage()">📏 Redimensionar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="editor-footer">
+                <button class="btn btn-warning" onclick="resetImage()">🔄 Resetear</button>
+                <button class="btn btn-success" onclick="saveEditedImage()">💾 Guardar Cambios</button>
+                <button class="btn" onclick="downloadEditedImage()">⬇️ Descargar</button>
+                <button class="btn btn-danger" onclick="closeImageEditor()">❌ Cancelar</button>
+            </div>
+        </div>
     </div>
 
     <script src="js/app.js"></script>
