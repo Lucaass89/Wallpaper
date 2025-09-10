@@ -1,38 +1,59 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wallpaper App</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallpaper Engine Web</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <div class="parallax-bg"></div>
+    <div class="parallax-overlay"></div>
+    <div class="scroll-indicator" id="scrollIndicator"></div>
 
-  <div id="mainWallpaper"></div>
-  <button id="menuBtn" class="menu-btn">☰</button>
-  <aside id="sidebar" class="sidebar">
-    <button id="closeBtn" class="close-btn">✖</button>
-    <h2>Gestión de Wallpapers</h2>
+    <div class="container">
+        <div class="header floating">
+            <h1>🎨 Wallpaper Engine Web</h1>
+            <p>Gestiona y personaliza tus wallpapers</p>
+        </div>
 
-    <form id="wallpaperForm">
-      <input type="text" id="urlInput" placeholder="URL del wallpaper">
-      <button type="submit">Agregar URL</button>
-    </form>
+        <div class="glass-card upload-section">
+            <div class="upload-methods">
+                <div class="url-input">
+                    <input type="text" id="urlInput" placeholder="Pega aquí la URL de una imagen...">
+                    <button class="btn" onclick="addImageFromUrl()">
+                        <span>✨ Agregar URL</span>
+                    </button>
+                </div>
+                
+                <div class="drop-zone" onclick="document.getElementById('fileInput').click()">
+                    <p>📁 Arrastra imágenes aquí o haz clic para seleccionar</p>
+                    <input type="file" id="fileInput" style="display: none;" multiple accept="image/*">
+                </div>
+            </div>
+        </div>
 
-    <div class="upload-section">
-      <p>Subir imágenes:</p>
-      <input type="file" id="fileInput" accept="image/*" multiple>
+        <div class="glass-card slideshow-controls">
+            <h3>🎞️ Control de Slideshow</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 20px;">
+                <button class="btn" id="slideshowBtn" onclick="toggleSlideshow()">▶️ Iniciar Slideshow</button>
+                <button class="btn btn-warning" onclick="selectAllWallpapers()">🔲 Seleccionar Todos</button>
+                <button class="btn btn-danger" onclick="clearSelection()">❌ Limpiar Selección</button>
+            </div>
+            <div class="slideshow-info">
+                <p>Wallpapers seleccionados: <strong><span id="selectedCount">0</span></strong></p>
+                <p>Intervalo: <strong>5 segundos</strong></p>
+            </div>
+        </div>
+
+        <div class="current-wallpaper">
+            <h3>🖼️ Wallpaper Actual</h3>
+            <img id="currentPreview" class="current-preview" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='350' height='250'%3E%3Crect width='350' height='250' fill='url(%23grad1)'/%3E%3Cdefs%3E%3ClinearGradient id='grad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23667eea;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23764ba2;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Ctext x='175' y='125' text-anchor='middle' fill='white' font-size='16' opacity='0.8'%3ENingún wallpaper seleccionado%3C/text%3E%3C/svg%3E" alt="Vista previa actual">
+        </div>
+
+        <div class="gallery" id="gallery"></div>
     </div>
 
-    <div class="drop-zone" id="dropZone">
-      <p>Arrastra imágenes aquí 📂</p>
-    </div>
-
-    <button id="randomBtn">Random Wallpaper 🎲</button>
-    <h3>Galería</h3>
-    <section class="wallpaper-container" id="wallpaperContainer"></section>
-  </aside>
-
-  <script src="js/app.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
